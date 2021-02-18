@@ -1,4 +1,4 @@
-module github.com/jenkins-x/go-scm
+module github.com/ramtandukarntt/go-scm
 
 require (
 	code.gitea.io/sdk/gitea v0.13.1-0.20210217150345-a968e32ca15c
