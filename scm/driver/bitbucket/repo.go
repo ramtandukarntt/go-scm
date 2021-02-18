@@ -59,8 +59,15 @@ type repositoryService struct {
 	client *wrapper
 }
 
-func (s *repositoryService) Create(context.Context, *scm.RepositoryInput) (*scm.Repository, *scm.Response, error) {
-	return nil, nil, scm.ErrNotSupported
+func (s *repositoryService) Create(ctx context.Context, input *scm.RepositoryInput) (*scm.Repository, *scm.Response, error) {
+       	in := &repoInput{
+		scm:  "git",
+		project.key: input.Name
+	}
+        path := fmt.Sprintf("2.0/repositories/jx3test/%s", input.Namespace)
+        out := new(repository)
+        res, err := s.client.do(ctx, "POST", path, in, out)
+        return convertRepository(out), res, err
 }
 
 func (s *repositoryService) Fork(context.Context, *scm.RepositoryInput, string) (*scm.Repository, *scm.Response, error) {
